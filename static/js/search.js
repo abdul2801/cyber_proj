@@ -145,7 +145,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
     if (query) {
-        updateSearchResults(query, getCookie("cseID"), getCookie("apiKey"));
+        // if cookie is not set then update the search results witgh the default values
+        if(!getCookie("cseID") || !getCookie("apiKey")) {
+            updateSearchResults(query, "d02f3bc096bfb4ca9", "AIzaSyBxC30lKdU17jDfJ69EMwJmVhQA-TP9oUc");
+        }
+        else {
+            updateSearchResults(query, getCookie("cseID"), getCookie("apiKey"));
+        }
+
     }
 });
 
