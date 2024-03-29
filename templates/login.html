@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        body {
+            background-color: #212121;
+            color: #ffffff;
+        }
+        .input-field input[type="text"], 
+        .input-field input[type="password"] {
+            color: #ffffff;
+            border-bottom: 1px solid #ffffff;
+        }
+        .input-field input[type="text"]:focus:not([readonly]),
+        .input-field input[type="password"]:focus:not([readonly]) {
+            border-bottom: 1px solid #ffffff !important;
+            box-shadow: 0 1px 0 0 #ffffff !important;
+        }
+        .input-field input[type="text"]:focus:not([readonly])+label,
+        .input-field input[type="password"]:focus:not([readonly])+label {
+            color: #ffffff !important;
+        }
+        .input-field input[type="text"].valid, 
+        .input-field input[type="password"].valid {
+            border-bottom: 1px solid #ffffff !important;
+            box-shadow: 0 1px 0 0 #ffffff !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Login</h2>
+        <form action="{{ url_for('login') }}" method="POST">
+            <div class="input-field">
+                <input type="text" id="username" name="username" required>
+                <label for="username">Username</label>
+            </div>
+            <div class="input-field">
+                <input type="password" id="password" name="password" required>
+                <label for="password">Password</label>
+            </div>
+            <button class="btn waves-effect waves-light blue" type="submit">Login
+                <i class="material-icons right">send</i>
+            </button>
+        </form>
+        <p>Don't have an account? <a href="{{ url_for('register') }}">Register</a></p>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>
