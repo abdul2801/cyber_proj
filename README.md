@@ -22,6 +22,12 @@ The WiseWeb Engine is a powerful tool designed to streamline the process of disc
 
 
     
+## Tech Stack
+
+```bash
+  Flask
+  Sqlite3
+```
 ## Authors
 **Team 4**
 - [@abdul2022BCY0026]
@@ -30,5 +36,8 @@ The WiseWeb Engine is a powerful tool designed to streamline the process of disc
 - [@Abishek2022BCY0048]
 - [@Mani2022BCY0037]
 - [@Varun2022BCY0015]
+
+
+
 
 
