@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function() {
                                 const resultLink = document.createElement("a");
                                 resultLink.href = item.link;
                                 resultLink.textContent = item.link;
-                                resultLink.target = "_blank"; // Open link in a new tab
+                                // resultLink.target = "_blank"; // Open link in a new tab
 
                                 const resultSnippet = document.createElement("p");
                                 resultSnippet.textContent = item.snippet;
@@ -246,6 +246,6 @@ function fixImages() {
 function setHeight(imageResult, img) {
     const imgHeight = img.clientHeight;
 
-    // Set the height of the .image-result div to match the image height
     imageResult.style.height = imgHeight + 'px';
 }
+    
