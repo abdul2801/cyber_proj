@@ -2,7 +2,8 @@ from flask import Flask, render_template, redirect, url_for, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
-
+from models import User, db
+from forms import RegistrationForm
 app = Flask(__name__, static_url_path='/static')
 app.secret_key = 'your_secret_key'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
@@ -11,7 +12,7 @@ db = SQLAlchemy(app)
 
 login_manager = LoginManager()
 login_manager.init_app(app)
-
+login_manager.login_view = 'login'
 
 @app.route('/')
 def index():
@@ -26,6 +27,10 @@ def register():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
+        if not any(char.isdigit() for char in password) or not any(char.isupper() for char in password) or not any(char in '!@#$%^&*()-+' for char in password) or len(password) < 8:
+            return 'Password must be at least 8 characters long and contain at least one digit, one uppercase letter, and one special character.'
+        if User.query.filter_by(username=username).first():
+            return 'Username already exists.'
         new_user = User(username=username, password=password)
         db.session.add(new_user)
         db.session.commit()
@@ -41,7 +46,7 @@ def login():
         user = User.query.filter_by(username=username).first()
         if user and check_password_hash(user.password, password):
             login_user(user)
-            return redirect(url_for('protected'))
+            return redirect(url_for(''))
         else:
             return 'Invalid username/password'
     return render_template('login.html')
@@ -73,16 +78,16 @@ class User(db.Model, UserMixin):
 def load_user(user_id):
     return User.query.get(int(user_id))
 
+if __name__ == '__main__':
+    app.run(debug=True)
 
 
 
-with app.app_context():
-    db.create_all()
 
 
 
 
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0",debug=True)
+    app.run(debug=True)
 
