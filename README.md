@@ -4,6 +4,16 @@
 The WiseWeb Engine is a powerful tool designed to streamline the process of discovering educational resources online.
 
 
+## Demo
+
+[WiseWeb Website](https://rizzcobra.pythonanywhere.com/)
+
+| User | Password |
+|----------|----------|
+| UserA | V#ag]0q{el!Ozia |
+| UserB | cJzM7{miUiZ^yW2 |
+
+
 ## Installing venv
 
 ```bash
