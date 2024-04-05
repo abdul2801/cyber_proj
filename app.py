@@ -2,8 +2,8 @@ from flask import Flask, render_template, redirect, url_for, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
-from models import User, db
-from forms import RegistrationForm
+# from models import User, db
+# from forms import RegistrationForm
 app = Flask(__name__, static_url_path='/static')
 app.secret_key = 'your_secret_key'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
@@ -46,7 +46,7 @@ def login():
         user = User.query.filter_by(username=username).first()
         if user and check_password_hash(user.password, password):
             login_user(user)
-            return redirect(url_for(''))
+            return redirect(url_for('index'))
         else:
             return 'Invalid username/password'
     return render_template('login.html')
